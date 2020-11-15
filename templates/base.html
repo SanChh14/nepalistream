@@ -1,0 +1,138 @@
+{% load static %}
+ <!--#563d7c#17a2b8-->
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Nepali Stream</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <style>
+      {% block css %}
+      {% endblock %}
+      body{
+        background-color: #222;
+      }
+      .jumbotron{
+        background: url("{% static 'jumbotron.png' %}") repeat-x;
+      }
+      .npstream{
+        font-size:2rem;
+      }
+      nav li{
+        padding-right: auto;
+        transition: 0.5s ease-out;
+      }
+      nav li:hover{
+        border-radius: 5px;
+        box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.4);
+        background-color:#563d7c;
+      }
+      .ftr{
+        font-size:1.2rem;
+      }
+      footer li{
+        font-size:1rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="jumbotron jumbotron-fluid mb-0 pb-1 pt-0">
+      <div class="container pb-0">
+        <h1 class="display-4 d-none d-sm-block text-center text-lg-left text-white">Nepali Stream</h1>
+        <h3 class="npstream display-4 d-sm-none text-center text-white pt-2 mb-0">Nepali Stream</h3>
+        <p class="lead text-center text-lg-left text-white pb-0 mb-1">Watch all football matches live.</p>
+      </div>
+    </div>
+    <div class="container-fluid sticky-top p-0 mt-0" style = "background:#563d7c;box-shadow:0 0mm 1.5rem rgba(0, 0, 0, 0.7);">
+      <nav class="container-lg navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="#">Nepali Stream</a>
+        <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#menus" aria-controls="#menus" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse mt-2 mt-lg-0 rounded bg-dark" id="menus">
+          <ul class="navbar-nav">
+            <li class="nav-item {{home}} pl-2 pl-lg-0" id="{{home}}">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item {{matches}} pl-2 pl-lg-0">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+            </li>
+            <li class="nav-item {{news}} pl-2 pl-lg-0">
+              <a class="nav-link" href="#">News</a>
+            </li>
+          </li>
+          <li class="nav-item {{news}} pl-2 pl-lg-0">
+            <a class="nav-link" href="#">Fixtures</a>
+          </li>
+          <li class="nav-item {{news}} pl-2 pl-lg-0">
+            <a class="nav-link" href="#">Tables</a>
+          </li>
+          </ul>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item {{about}} pl-2 pl-lg-0">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item {{contact}} pl-2 pl-lg-0">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item {{privacy}} pl-2 pl-lg-0">
+              <a class="nav-link" href="#">Privacy Policy</a>
+            </li>
+            <li class="nav-item {{terms}} pl-2 pl-lg-0">
+              <a class="nav-link" href="#">Terms and Conditions</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+
+
+
+    <div class="container p-2 px-sm-0 py-sm-4 mb-2" style="background-color:#222;">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+    <footer class="container-fluid bg-dark text-white display-4 py-2 px-1 mt-0">
+      <div class="container-lg navbar navbar-collapse show navbar-expand-lg navbar-dark">
+          <ul class="row navbar-nav col-sm-12 col-lg-auto text-center text-lg-left pl-md-1 m-0 ml-3 ml-md-0 ml-lg-1">
+            <li class="ftr nav-item">&copyNepaliStream</li>
+          </ul>
+          <ul class="row col-sm-12 col-lg-auto navbar-nav ml-lg-auto pr-lg-0 text-center text-lg-left m-0 ml-3 ml-md-0">
+            <li class="nav-item {{home}}">
+              <a class="nav-link" href="{% url 'home' %}">Home</a>
+            </li>
+            <li class="nav-item {{matches}}">
+              <a class="nav-link" href="{% url 'matches' %}">Matches</a>
+            </li>
+            <li class="nav-item {{news}}">
+              <a class="nav-link" href="#">News</a>
+            </li>
+            <li class="nav-item {{news}}">
+              <a class="nav-link" href="#">Fixtures</a>
+            </li>
+            <li class="nav-item {{news}}">
+              <a class="nav-link" href="#">Tables</a>
+            </li>
+            <li class="nav-item {{about}}">
+              <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item {{contact}}">
+              <a class="nav-link" href="#">Contact Us</a>
+            </li>
+            <li class="nav-item {{privacy}}">
+              <a class="nav-link" href="#">Privacy Policy</a>
+            </li>
+            <li class="nav-item {{terms}}">
+              <a class="nav-link" href="#">Terms and Conditions</a>
+            </li>
+          </ul>
+      </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  </body>
+</html>

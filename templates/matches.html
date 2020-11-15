@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block css %}
+.link{
+  background:#563d7c;
+  color: white;
+  font-weight:lighter;
+  transition: 1s ease;
+}
+.link:hover{
+  background:#703FBF;
+  color: white;
+  font-weight:lighter;
+}
+{% endblock %}
+<!--
+.link{
+  background:#5b0078;
+  color: white;
+  font-weight:lighter;
+}
+.link:hover{
+  background:#5d0678;
+  color: white;
+  font-weight:lighter;
+}-->
+{% block content %}
+<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white; border: white">
+  <div class="col-12 p-0 m-0">
+    <ul class="country-sales list-group list-group-flush container p-0">
+      {% for league in matchesdata %}
+      <li class="country-sales-content list-group-item p-0 mb-2 pb-3">
+        <div class="row justify-content-center">
+          <p class="ml-0 mt-3 font-weight-bold"> {{league.type}} </p>
+        </div>
+        <div class="ml-2 ml-md-5 pl-lg-5"> {{league.timezone}} </div>
+        {% for match in league.leaguedata %}
+          <div class="row mt-2">
+            <span class="font-18 ml-0 col text-center">
+              <a class="btn mt-4 mt-sm-3">
+                {{match.0}}
+              </a>
+            </span>
+            <span class="ml-0 mt-4 col text-center">
+              <a><h6>{{match.1}}</h6></a>
+            </span>
+            <span class="col text-center pt-4 pt-sm-4 pt-md-3 pt-lg-3">
+              <a class="btn link" href="{% url 'matches' %}{{match.3}}" >Link</a>
+            </span>
+          </div>
+        {% endfor %}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}

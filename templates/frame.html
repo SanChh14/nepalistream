@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card-body p-5" style="background-color: white; border: white">
+  <div class="col-12 p-0">
+    <ul class="country-sales list-group list-group-flush container">
+      <li class="country-sales-content list-group-item">
+        <div class="row justify-content-center">
+          <p class="ml-3 mt-3 font-weight-bold"> Others </p>
+        </div>
+        <div class="ml-5"> TIMEZONE : UTC(0) </div>
+        {% for match in matchesdata %}
+          <div class="row mt-3">
+            <span class="font-18 ml-3 col text-center">
+              <a class="btn mt-3">
+                {{match.0}}
+              </a>
+            </span>
+            <span class="ml-3 mt-4 col text-center">
+              <a><h6>{{match.1}}</h6></a>
+            </span>
+            <span class="col text-center">
+              <a href="{{match.2}}" target="_blank" class="btn mt-4 btn-info">Link</a>
+            </span>
+          </div>
+        {% endfor %}
+      </li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
