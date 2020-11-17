@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 
 {% block css %}
+.vs-sm{
+  font-size:2.5rem;
+}
+.vs{
+  font-size: 1.7rem;
+}
 {% endblock %}
 
 {% block content %}
@@ -8,13 +14,48 @@
 <div class="text-center text-info" style="margin-top:8rem; margin-bottom:9rem;">
   <h1 class="display-4">Match hasn't started yet.</h1>
 </div>
+
+
 {% elif check == 'nomatch' %}
 <div class="text-center text-info" style="margin-top:8rem; margin-bottom:9rem;">
   <h1 class="display-4">No match found.</h1>
 </div>
+
+
 {% else %}
-<div class="text-info">
-  {{linksdata}}
+<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+  <div class="col-12 p-1 p-sm-2 m-0">
+      <div class="vs-sm d-none d-sm-block display-4 text-center mb-2 mb-lg-3">
+        {{vs}}
+      </div>
+      <div class="vs d-sm-none display-4 text-center mb-2 mb-lg-3">
+        {{vs}}
+      </div>
+      <table class="table table-hover text-center small m-0 p-0">
+        <thead>
+          <tr>
+            <th scope = "col">Streamer</th>
+            <th scope = "col">
+              <span class="d-none d-sm-block">Language</span>
+              <span class="d-sm-none">Lang</span>
+            </th>
+            <th scope = "col">Channel</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for linkdata in linksdata %}
+            <tr>
+              <td class = "streamer">
+                <span class="d-none d-sm-block">{{linkdata.0}}</span>
+                <span class="d-sm-none">{{linkdata.4}}</span>
+              </td>
+              <td>{{linkdata.3}}</td>
+              <td><a href="{{linkdata.1}}" target="_blank">{{linkdata.2}}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  </div>
 </div>
 {% endif %}
 {% endblock %}
