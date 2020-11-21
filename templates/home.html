@@ -31,7 +31,8 @@
       {% for league in matchesdata %}
       <li class="country-sales-content list-group-item p-0 mb-2 pb-3">
         <div class="row justify-content-center">
-          <p class="ml-0 mt-3 font-weight-bold"> {{league.type}} </p>
+          <img class = "img-responsive" src="{{league.leagueimg}}" height="55px" style="overflow:hidden;" alt="{{league.type}}">
+          <p class="ml-1 mt-3 font-weight-bold px-1" style = "box-shadow: 0px 0px 1rem rgba(0, 0, 0, 0.2); border-radius:3px;"> {{league.type}} </p>
         </div>
         <div class="ml-2 ml-md-5 pl-lg-5"> {{league.timezone}} </div>
         {% for match in league.leaguedata %}

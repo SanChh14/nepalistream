@@ -7,6 +7,12 @@
 .vs{
   font-size: 1.7rem;
 }
+.text-eclipse{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  max-width:0;
+}
 {% endblock %}
 
 {% block content %}
@@ -36,8 +42,7 @@
           <tr>
             <th scope = "col">Streamer</th>
             <th scope = "col">
-              <span class="d-none d-sm-block">Language</span>
-              <span class="d-sm-none">Lang</span>
+              Language
             </th>
             <th scope = "col">Channel</th>
           </tr>
@@ -45,12 +50,11 @@
         <tbody>
           {% for linkdata in linksdata %}
             <tr>
-              <td class = "streamer">
-                <span class="d-none d-sm-block">{{linkdata.0}}</span>
-                <span class="d-sm-none">{{linkdata.4}}</span>
+              <td class = "text-eclipse">
+                <span>{{linkdata.0}}</span>
               </td>
               <td>{{linkdata.3}}</td>
-              <td><a href="{{linkdata.1}}" target="_blank">{{linkdata.2}}</a></td>
+              <td class = "text-eclipse"><a href="{{linkdata.1}}" target="_blank">{{linkdata.2}}</a></td>
             </tr>
           {% endfor %}
         </tbody>

@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block css %}
+img{
+  width:20px;
+  height:20px;
+}
+.league{
+  font-size:20px;
+}
+.link{
+  background:#563d7c;
+  color: white;
+  font-weight:lighter;
+  transition: 1s ease;
+}
+.link:hover{
+  background:#703FBF;
+  color: white;
+  font-weight:lighter;
+}
+{% endblock %}
+
+{% block content %}
+<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+  <div class="col-12 p-1 p-sm-2 m-0">
+    <form class="form-inline mb-4" id="dateform" action="" method="get">
+      <select class="form-control mr-2 mb-2 mb-md-0" id="leagueform" name = "league">
+          <option {% if select == '' %}selected{% endif %}>All</option>
+        {% for league in leagues %}
+          <option {% if select == league %}selected{% endif %}><small>{{league}}</small></option>
+        {% endfor %}
+      </select>
+      <input class="form-control mr-2" id="dat" type="date" value="{{todaysdate.0}}-{{todaysdate.1}}-{{todaysdate.2}}" name="date" style="width:170px;">
+      <input class="btn link" type="submit" value="GO">
+    </form>
+    {% if matchesdata|length == 0 %}
+      <div class = "text-center" style = "background-color:rgba(216, 216, 216, 0.2); border-radius:5px;">No Game Scheduled.</div>
+    {% endif %}
+    <table class="table table-hover small m-0 p-0">
+    {% for matches in matchesdata %}
+        <thead>
+          <tr>
+            <th class = "league display-4" colspan = "4">{{matches.0}}</th>
+          </tr>
+        </thead>
+        {% for matchh in matches.1 %}
+          {% if matchh|length != 0 %}
+          <thead>
+            <tr>
+              <th scope = "col" colspan = "3">Match</th>
+              <th scope = "col">{{matchh.0}}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for match in matchh.1 %}
+            <tr>
+              {% if match|length is 1 %}
+                <td class="text-left" colspan= "4"><small>{{match.0}}</small></td>
+              {% else %}
+                <td class = "text-right">
+                  <span class="d-none d-sm-block">{{match.0}} <img src="{{match.2}}" alt="{{match.0}}"></span>
+                  <span class="d-sm-none">{{match.1}} <img src="{{match.2}}" alt="{{match.0}}"></span>
+                </td>
+                <td class = "text-center">{{match.3}}</td>
+                <td class = "text-left">
+                  <span class="d-none d-sm-block"><img src="{{match.4}}" alt="{{match.5}}"> {{match.5}}</span>
+                  <span class="d-sm-none"><img src="{{match.4}}" alt="{{match.5}}"> {{match.6}}</span>
+                </td>
+                <td {% if match.7 == 'LIVE' %} style = "color:red;" {% endif %}>{{match.7}}</td>
+              {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+          {% endif %}
+        {% endfor %}
+    {% endfor %}
+    </table>
+  </div>
+</div>
+{% endblock %}
+
+
+{% block scripts %}
+<script>
+</script>
+{% endblock %}

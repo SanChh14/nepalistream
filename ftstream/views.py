@@ -1,4 +1,3 @@
-from django.http import HttpResponse
 from django.shortcuts import render
 from bs4 import BeautifulSoup
 import requests
@@ -13,6 +12,7 @@ def home(request):
     leagues = football.find_all(class_='country-sales-content list-group-item')
     matchesdata = list()
     for league in leagues:
+        leagueimg = league.find(class_='row justify-content-center').img['src']
         type = league.find(class_='row justify-content-center').find(class_='ml-3 mt-3 font-weight-bold').text
         timezone = league.find(class_='ml-5').text
         matches = league.find_all('div', class_='row mt-3')
@@ -24,7 +24,7 @@ def home(request):
             link = matchdata[2].a['href']
             slug = slugify(vs)
             leaguedata.append([time, vs, link, slug])
-        leaguedatas = {'type': type, 'timezone':timezone, 'leaguedata':leaguedata}
+        leaguedatas = {'type': type, 'leagueimg':leagueimg, 'timezone':timezone, 'leaguedata':leaguedata}
         matchesdata.append(leaguedatas)
     return render(request, 'home.html', {'matchesdata':matchesdata, 'home':'active'})
 
@@ -36,6 +36,7 @@ def matches(request):
     leagues = football.find_all(class_='country-sales-content list-group-item')
     matchesdata = list()
     for league in leagues:
+        leagueimg = league.find(class_='row justify-content-center').img['src']
         type = league.find(class_='row justify-content-center').find(class_='ml-3 mt-3 font-weight-bold').text
         timezone = league.find(class_='ml-5').text
         matches = league.find_all('div', class_='row mt-3')
@@ -47,7 +48,7 @@ def matches(request):
             link = matchdata[2].a['href']
             slug = slugify(vs)
             leaguedata.append([time, vs, link, slug])
-        leaguedatas = {'type': type, 'timezone':timezone, 'leaguedata':leaguedata}
+        leaguedatas = {'type': type, 'leagueimg':leagueimg, 'timezone':timezone, 'leaguedata':leaguedata}
         matchesdata.append(leaguedatas)
     return render(request, 'matches.html', {'matchesdata':matchesdata, 'matches':'active'})
 
@@ -93,7 +94,7 @@ def match(request, slug):
                     slink = td[1].a['href']
                     channel = td[1].a.text
                     language = td[5].text.strip()
-                    linksdata.append([streamer, slink, channel, language, streamer[:10]+'..'])
+                    linksdata.append([streamer, slink, channel, language])
                 return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})
             except:
                 return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})

@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['192.168.1.42','127.0.0.1']
 # Application definition
 
 INSTALLED_APPS = [
+    'news.apps.NewsConfig',
+    'tables.apps.TablesConfig',
+    'fixtures.apps.FixturesConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
