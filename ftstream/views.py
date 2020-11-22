@@ -22,8 +22,9 @@ def home(request):
             time = matchdata[0].a.text.strip()
             vs = matchdata[1].a.text
             link = matchdata[2].a['href']
+            linktext = matchdata[2].a.text
             slug = slugify(vs)
-            leaguedata.append([time, vs, link, slug])
+            leaguedata.append([time, vs, link, slug, linktext])
         leaguedatas = {'type': type, 'leagueimg':leagueimg, 'timezone':timezone, 'leaguedata':leaguedata}
         matchesdata.append(leaguedatas)
     return render(request, 'home.html', {'matchesdata':matchesdata, 'home':'active'})
@@ -46,8 +47,15 @@ def matches(request):
             time = matchdata[0].a.text.strip()
             vs = matchdata[1].a.text
             link = matchdata[2].a['href']
+            linktext = matchdata[2].a.text
+            hcheck = 0
+            if linktext == 'Highlights':
+                try:
+                    link = link.split('php/')[1]
+                except :
+                    hcheck = 1
             slug = slugify(vs)
-            leaguedata.append([time, vs, link, slug])
+            leaguedata.append([time, vs, link, slug, linktext, hcheck])
         leaguedatas = {'type': type, 'leagueimg':leagueimg, 'timezone':timezone, 'leaguedata':leaguedata}
         matchesdata.append(leaguedatas)
     return render(request, 'matches.html', {'matchesdata':matchesdata, 'matches':'active'})

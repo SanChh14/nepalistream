@@ -39,7 +39,15 @@
               <a><h6>{{match.1}}</h6></a>
             </span>
             <span class="col text-center pt-4 pt-sm-4 pt-md-3 pt-lg-3">
-              <a class="btn link" href="{% url 'matches' %}{{match.3}}" >Link</a>
+              {% if match.4 == 'Link' %}
+                <a class="btn link" href="{% url 'matches' %}{{match.3}}">{{match.4}}</a>
+              {% else %}
+                {% if match.5 == 0 %}
+                  <a class="btn link" href="{{match.2}}" target="_blank">{{match.4}}</a>
+                {% else %}
+                  <a class="btn link" href="{% url 'fixtures' %}">{{match.4}}</a>
+                {% endif %}
+              {% endif %}
             </span>
           </div>
         {% endfor %}
