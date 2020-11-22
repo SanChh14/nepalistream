@@ -1,8 +1,63 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+<div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+  <h1 class="page-title">
+    Tables
+  </h1>
   <div class="col-12 p-1 p-sm-2 m-0">
+    <form class="form-inline mb-4" id="dateform" action="" method="get">
+      <select class="form-control mr-2 mb-2 mb-md-0" id="leagueform" name = "league">
+        {% for league in leagues %}
+          <option {% if select == league %}selected{% endif %}><small>{{league}}</small></option>
+        {% endfor %}
+      </select>
+      <select class="form-control mr-2" id="dat" name = "date" style="width:140px;">
+        {% for year in years %}
+          <option {% if todaysdate == year %}selected{% endif %}><small>{{year}}</small></option>
+        {% endfor %}
+      </select>
+      <input class="btn link" type="submit" value="GO">
+    </form>
+    {% if tabledata|length == 0 %}
+      <div class = "text-center" style = "background-color:rgba(216, 216, 216, 0.2); border-radius:5px;">No data found.</div>
+    {% endif %}
+
+    <table class="table table-hover small m-0 p-0 table-striped">
+      {% if check != 0 %}
+      <thead>
+        <tr>
+          {% for th in tabledata.0 %}
+            <th class = "px-1 py-2 {% if th|length < 3 %}text-right{% else %}text-left{% endif %}">{{th}}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      {% endif %}
+      {% if check != 0 %}<tbody>{% endif %}
+      {% for tr in tabledata.1 %}
+      {% if check == 0 %}<{% if tr.0|length == 1 %}thead{% else %}tbody{% endif %}>{% endif %}
+        <tr>
+            {% if tr.0|length == 1 %}
+              <th class = "px-1 py-2 text-left">{{tr.0.0}}</th>
+            {% else %}
+              <td class = "px-1 py-1 text-left">
+                <span class="d-none d-sm-block"><span class = "{% if tr.0.0|length == 1 %}mr-2{% else %}mr-0{% endif %}">{{tr.0.0}}</span> <img src="{{tr.0.1}}" alt="{{tr.0.3}}" style = "height:20px; width:20px;"> {{tr.0.3}}</span>
+                <span class="d-sm-none"><span class = "{% if tr.0.0|length == 1 %}mr-2{% else %}mr-0{% endif %}">{{tr.0.0}}</span> <img src="{{tr.0.1}}" alt="{{tr.0.3}}" style = "height:20px; width:19px;"> {{tr.0.2}}</span>
+              </td>
+            {% endif %}
+            {% for td in tr.1 %}
+              {% if tr.0|length == 1 %}
+                <th class = "px-1 py-2 text-right">{{td}}</th>
+              {% else %}
+                <td class = "px-1 py-1 text-right" style = "color:{% if td.0 == '+' %}#094{% elif td.0 == '-' %}#d00{% endif %};">{{td}}</td>
+              {% endif %}
+            {% endfor %}
+        </tr>
+        {% if check == 0 %}<{% if tr.0|length == 1 %}/thead{% else %}/tbody{% endif %}>{% endif %}
+        {% endfor %}
+        {% if check != 0 %}</tbody>{% endif %}
+
+    </table>
 
   </div>
 </div>

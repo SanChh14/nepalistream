@@ -8,21 +8,13 @@ img{
 .league{
   font-size:20px;
 }
-.link{
-  background:#563d7c;
-  color: white;
-  font-weight:lighter;
-  transition: 1s ease;
-}
-.link:hover{
-  background:#703FBF;
-  color: white;
-  font-weight:lighter;
-}
 {% endblock %}
 
 {% block content %}
-<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+<div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+  <h1 class="page-title">
+    Fixtures
+  </h1>
   <div class="col-12 p-1 p-sm-2 m-0">
     <form class="form-inline mb-4" id="dateform" action="" method="get">
       <select class="form-control mr-2 mb-2 mb-md-0" id="leagueform" name = "league">
@@ -41,33 +33,33 @@ img{
     {% for matches in matchesdata %}
         <thead>
           <tr>
-            <th class = "league display-4" colspan = "4">{{matches.0}}</th>
+            <th class = "league display-4 text-center text-sm-left" colspan = "4" style = "font-weight:normal; opacity:0.9;">{{matches.0}}</th>
           </tr>
         </thead>
         {% for matchh in matches.1 %}
           {% if matchh|length != 0 %}
           <thead>
             <tr>
-              <th scope = "col" colspan = "3">Match</th>
-              <th scope = "col">{{matchh.0}}</th>
+              <th class = "display-4" colspan = "3" style = "font-size:0.9rem; font-weight:normal;">Match</th>
+              <th class = "display-4" style = "font-size:0.9rem; font-weight:normal;">{{matchh.0}}</th>
             </tr>
           </thead>
           <tbody>
             {% for match in matchh.1 %}
             <tr>
               {% if match|length is 1 %}
-                <td class="text-left" colspan= "4"><small>{{match.0}}</small></td>
+                <td class="text-left py-2" colspan= "4"><small>{{match.0}}</small></td>
               {% else %}
-                <td class = "text-right">
+                <td class = "text-right py-2">
                   <span class="d-none d-sm-block">{{match.0}} <img src="{{match.2}}" alt="{{match.0}}"></span>
                   <span class="d-sm-none">{{match.1}} <img src="{{match.2}}" alt="{{match.0}}"></span>
                 </td>
-                <td class = "text-center">{{match.3}}</td>
-                <td class = "text-left">
+                <td class = "text-center py-2">{{match.3}}</td>
+                <td class = "text-left py-2">
                   <span class="d-none d-sm-block"><img src="{{match.4}}" alt="{{match.5}}"> {{match.5}}</span>
                   <span class="d-sm-none"><img src="{{match.4}}" alt="{{match.5}}"> {{match.6}}</span>
                 </td>
-                <td {% if match.7 == 'LIVE' %} style = "color:red;" {% endif %}>{{match.7}}</td>
+                <td class = "py-2" {% if match.7 == 'LIVE' %} style = "color:red; font-weight:bold;" {% endif %}>{{match.7}}</td>
               {% endif %}
             </tr>
             {% endfor %}

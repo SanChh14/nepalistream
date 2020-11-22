@@ -1,17 +1,7 @@
 {% extends 'base.html' %}
 
 {% block css %}
-.link{
-  background:#563d7c;
-  color: white;
-  font-weight:lighter;
-  transition: 1s ease;
-}
-.link:hover{
-  background:#703FBF;
-  color: white;
-  font-weight:lighter;
-}
+
 {% endblock %}
 <!--
 .link{
@@ -25,7 +15,10 @@
   font-weight:lighter;
 }-->
 {% block content %}
-<div class="card-body px-2 py-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+<div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white;">
+  <h1 class="page-title">
+    Matches
+  </h1>
   <div class="col-12 p-0 m-0">
     <ul class="country-sales list-group list-group-flush container p-0">
       {% for league in matchesdata %}

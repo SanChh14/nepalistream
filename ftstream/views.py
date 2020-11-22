@@ -67,7 +67,7 @@ def match(request, slug):
             matchvs = matchdata[1].a.text
             matchlink = matchdata[2].a['href']
     if matchlink == '':
-        return render(request, 'match.html', {'check':'nomatch'})
+        return redirect('fixtures')
     else:
         s = requests.get(matchlink, headers = headers, verify = False).text
         soup = BeautifulSoup(s, 'lxml')
@@ -76,7 +76,7 @@ def match(request, slug):
             iframe = soup.find('iframe')
             link = iframe['src'].split('/')
         except:
-            return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})
+            return redirect('fixtures')
         if link[2]=='buffersports.com':
             try:
                 iframe = soup.find('iframe')
@@ -97,6 +97,6 @@ def match(request, slug):
                     linksdata.append([streamer, slink, channel, language])
                 return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})
             except:
-                return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})
+                return redirect('fixtures')
         else:
-            return render(request, 'match.html', {'linksdata':linksdata, 'check':len(linksdata), 'vs':matchvs})
+            return redirect('fixtures')

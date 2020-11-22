@@ -7,9 +7,8 @@ from datetime import datetime
 
 def fixtures(request):
     leaguedict = {
-        '':'all',
         'All':'all',
-        'La Liga':'esp.1',
+        'Spanish Primera División':'esp.1',
         'French Ligue 1':'fra.1',
         'English Premier League':'eng.1',
         'UEFA Champions League':'uefa.champions',
@@ -54,18 +53,20 @@ def fixtures(request):
         fdate = ''.join(fdate.split('-'))
         tdate = datetime.now()
         if todaysdate == [str(tdate.year), str(tdate.month), str(tdate.day)]:
-            link = 'https://www.espn.in/football/fixtures/_/league/'+leaguedict[league]
+            link = 'https://www.espn.in/football/fixtures/_/league/'+leaguedict.get(league, '')
         else:
-            link = 'https://www.espn.in/football/fixtures/_/date/'+fdate+'/league/'+leaguedict[league]
+            link = 'https://www.espn.in/football/fixtures/_/date/'+fdate+'/league/'+leaguedict.get(league, '')
     site = requests.get(link, headers=headers, verify = False).text
     football = BeautifulSoup(site, 'lxml')
+    todaysdate = football.find('div', class_='calendar-container')['data-thisdate']
+    todaysdate = [todaysdate[:4], todaysdate[4:6], todaysdate[6:]]
     matches = football.find(id='sched-container')
     fixtures = matches.contents[1:]
     allowedTitles = [
-        'La Liga',
-        'French Ligue 1',
         'English Premier League',
+        'Spanish Primera División',
         'UEFA Champions League',
+        'French Ligue 1',
         'Italian Serie A',
         'German Bundesliga',
         'UEFA Europa League',
