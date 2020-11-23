@@ -108,3 +108,15 @@ def match(request, slug):
                 return redirect('fixtures')
         else:
             return redirect('fixtures')
+
+def about(request):
+    return render(request, 'about.html', {'about':'active'})
+
+def contactus(request):
+    return render(request, 'contactus.html', {'contact':'active'})
+
+def privacypolicy(request):
+    return render(request, 'privacypolicy.html', {'privacy':'active'})
+
+def termsandconditions(request):
+    return render(request, 'termsandconditions.html', {'terms':'active'})

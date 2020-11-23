@@ -1,19 +1,18 @@
 {% extends 'base.html' %}
 
 {% block css %}
-
-{% endblock %}
-<!--
-.link{
-  background:#5b0078;
-  color: white;
-  font-weight:lighter;
+@media screen and (max-width: 370px) {
+  .highlights{
+    display:none;
+  }
 }
-.link:hover{
-  background:#5d0678;
-  color: white;
-  font-weight:lighter;
-}-->
+@media screen and (min-width: 370px) {
+  .hl{
+    display:none;
+  }
+}
+{% endblock %}
+
 {% block content %}
 <div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white;">
   <h1 class="page-title">
@@ -43,9 +42,9 @@
                 <a class="btn link" href="{% url 'matches' %}{{match.3}}">{{match.4}}</a>
               {% else %}
                 {% if match.5 == 0 %}
-                  <a class="btn link" href="{{match.2}}" target="_blank">{{match.4}}</a>
+                  <a class="btn link" href="{{match.2}}" target="_blank"><span class = "highlights">{{match.4}}</span><span class = "hl">HL</span></a>
                 {% else %}
-                  <a class="btn link disabled" href="{% url 'fixtures' %}">{{match.4}}</a>
+                  <a class="btn link disabled" href="{% url 'fixtures' %}"><span class = "highlights">{{match.4}}</span><span class = "hl">HL</span></a>
                 {% endif %}
               {% endif %}
             </span>

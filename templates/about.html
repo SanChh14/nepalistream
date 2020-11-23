@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+<div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white; font-weight:300;">
+  <h1 class="page-title">
+    About Us
+  </h1>
+  <div class="col-12 p-2 m-0">
+    <p class= " d-flex justify-content-center">
+      <img src="{% static 'ftball.jpg' %}" width="300px;" alt="NepaliStream" style = "border-radius:5px;">
+      <span class="npstreamlg display-4 text-center text-lg-left text-white" style = "position:absolute; top:10px;">Nepali Stream</span>
+      <span class="npstreamlg display-4 text-center text-lg-left text-white" style = "position:absolute; top:145px;">About Us</span>
+    </p>
+    <p>
+      <a href="{% url 'home' %}">NepaliStream.com</a> covers all major football events with indepth analysis, statistics, numbers and facts/figures. It is a new site but the team behind NepaliStream has 8 years of experience in sports blogging. Currently we have a few writers working on the site who cover different sports stories but very soon in future we are planning to hire new authors on voluntarily or paid basis depending on the experience.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">CURRENT AUTHORS AT NepaliStream.com</h3>
+    <p>
+      We have 7 dedicated authors who contribute in sports blogging, plus an editor who is responsible for quality check and placements of editorials on the site. NepaliStream is expanding everyday and we are looking for new ideas to engage the traffic in more suitable ways.
+    </p>
+    <p>
+      <u>Social Media Profiles</u> – Users can also engage with stories of <a href="{% url 'home' %}">NepaliStream.com</a> at the different social media channels. Like you facebook page, twitter, Instagram or subscribe to our youtube channel.
+    </p>
+    <p>
+      <u>Official Forum & Message Board</u> – Next step is the create and manage a forum for the site where users can register and engage with different sporting events. It will be on the site very soon.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">Want to be an author for NepaliStream.com?</h3>
+    <p>
+      We are always looking to hire new but passionate sports writers who wants to contribute on the site with in depth analysis of different sports topics. To know more about contributing program you can contact us at <span style = "color:#007bff; text-decoration:underline;"><i>authors@nepalistream.com</i></span>
+    </p>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+
+{% endblock %}
+
+{% block content %}
+<div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white; font-weight:300;">
+  <h1 class="page-title">
+    Privacy Policy
+  </h1>
+  <div class="col-12 p-2 m-0">
+    <p class= "d-flex justify-content-center">
+      <img src="{% static 'ftball.jpg' %}" width="300px;" alt="NepaliStream" style = "border-radius:5px;">
+      <span class="npstreamlg display-4 text-center text-lg-left text-white" style = "position:absolute; top:10px;">Nepali Stream</span>
+      <span class="npstreamlg display-4 text-center text-lg-left text-white" style = "position:absolute; top:140px;">Privacy Policy</span>
+    </p>
+    <p>
+      Privacy Policy explains how we collect, use and share data and information collected when you visit <a href="{% url 'home' %}">NepaliStream.com</a>. By visiting the site and using the services you agree to terms of this privacy policy. We can be reached via <a href="{% url 'contact' %}" style = "text-decoration:underline;">Contact Us</a> in case you have any questions regarding the privacy policy, terms and conditions.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">COOKIES</h3>
+    <p>
+      We might set access cookies which might be stored on your computer upon your first visit to <a href="{% url 'home' %}">NepaliStream.com</a>. “Cookie” is a small file which contains small text, used by majority of the websites, sent and store on your computer’ hard driver in order to uniquely identify the browser you are using, whereas most of the current generation browsers are usually setup to accept cookies by default. You can change the cookies preferences through your browser settings.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">THIRD PART COOKIES</h3>
+    <p>
+      At <a href="{% url 'home' %}">NepaliStream.com</a> we use third party vendors, for example google, which use cookies to serve advertisement which might be based on your previous visit to the site.
+    </p>
+    <p>
+      You can read more about how google uses cookies and how you can opt-out by visiting <a href="https://policies.google.com/technologies/ads" target="_blank" style = "text-decoration:underline;">google advertising terms</a>.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">ANALYTICS TOOLS</h3>
+    <p>
+      At <a href="{% url 'home' %}">NepaliStream.com</a> we use google analytics to collect data and information of how visitors use <a href="{% url 'home' %}">NepaliStream.com</a> by collecting only non-personal information which include information like what url you came to NepaliStream, IP Address, type of computer and browser, time spent on the site, number of pages accessed at NepaliStream and what url you exited from etc.
+    </p>
+    <p>
+      You can use Google Analytics Opt-out <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" style = "text-decoration:underline;">Browser Add-on</a> to prevent your data from being used by Google Analytics. You can read more about this on google analytic out-out page.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">EXTERNAL LINKS:</h3>
+    <p>
+      <a href="{% url 'home' %}">NepaliStream.com</a> might contail links to external sites. We are not in any way responsible for privacy and terms of such websites. So you have to review their privacy terms and conditions yourself.
+    </p>
+    <p>
+      You can always reach out to us if you have any questions about how the data collected through the use of cookies is used and stored at <a href="{% url 'home' %}">NepaliStream.com</a> or if you want to know more about our privacy polices. Use the <a href="{% url 'contact' %}" style = "text-decoration:underline;">Contact Us</a> page for any questions.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">How we protect your information</h3>
+    <p>
+      We adopt appropriate data collection, storage and processing practices and security measures to protect against unauthorized access, alteration, disclosure or destruction of your personal information, username, password, transaction information and data stored on our Site.
+    </p>
+    <p>
+      Our Site is in compliance with PCI vulnerability standards in order to create as secure of an environment as possible for Users.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">Sharing your personal information</h3>
+    <p>
+      We do not sell, trade, or rent Users personal identification information to others. We may share generic aggregated demographic information not linked to any personal identification information regarding visitors and users with our business partners, trusted affiliates and advertisers for the purposes outlined above.
+    </p>
+    <h3 style = "font-size:16px; text-decoration:underline; font-weight:bold;">Your acceptance of these terms</h3>
+    <p>
+      By using this Site, you signify your acceptance of this policy and <a href="{% url 'terms' %}">terms of service</a>. If you do not agree to this policy, please do not use our Site. Your continued use of the Site following the posting of changes to this policy will be deemed your acceptance of those changes.
+    </p>
+  </div>
+</div>
+{% endblock %}
