@@ -27,4 +27,5 @@ urlpatterns = [
     path('fixtures/', include('fixtures.urls')),
     path('tables/', include('tables.urls')),
     path('news/', include('news.urls')),
+    path('highlights/', include('highlights.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

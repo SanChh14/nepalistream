@@ -3,22 +3,16 @@
 {% block css %}
 
 {% endblock %}
-<!--
-.link{
-  background:#5b0078;
-  color: white;
-  font-weight:lighter;
-}
-.link:hover{
-  background:#5d0678;
-  color: white;
-  font-weight:lighter;
-}-->
+
 {% block content %}
 <div class="card-body px-2 pt-3 pb-4 p-sm-3 mr-0 rounded" style="background-color: white;">
   <h1 class="page-title">
-    Matches
+    Highlights
   </h1>
+  <form class="d-flex justify-content-center" action="" method="GET">
+    <button class = "btn link m-2" type="submit" name="date" value = "-2" {% if date.2 == '-2' %}disabled{% endif %}>{{date.0}}</button>
+    <button class = "btn link m-2" type="submit" name="date" value = "-1" {% if date.2 == '-1' %}disabled{% endif %}>{{date.1}}</button>
+  </form>
   <div class="col-12 p-0 m-0">
     <ul class="country-sales list-group list-group-flush container p-0">
       {% for league in matchesdata %}
@@ -39,14 +33,10 @@
               <a><h6>{{match.1}}</h6></a>
             </span>
             <span class="col text-center pt-4 pt-sm-4 pt-md-3 pt-lg-3">
-              {% if match.4 == 'Link' %}
-                <a class="btn link" href="{% url 'matches' %}{{match.3}}">{{match.4}}</a>
+              {% if match.5 == 0 %}
+                <a class="btn link" href="{{match.2}}" target="_blank">{{match.4}}</a>
               {% else %}
-                {% if match.5 == 0 %}
-                  <a class="btn link" href="{{match.2}}" target="_blank">{{match.4}}</a>
-                {% else %}
-                  <a class="btn link disabled" href="{% url 'fixtures' %}">{{match.4}}</a>
-                {% endif %}
+                <a class="btn link disabled" href="{% url 'fixtures' %}">{{match.4}}</a>
               {% endif %}
             </span>
           </div>

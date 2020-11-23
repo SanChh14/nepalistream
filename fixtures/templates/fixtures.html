@@ -33,33 +33,33 @@ img{
     {% for matches in matchesdata %}
         <thead>
           <tr>
-            <th class = "league display-4 " colspan = "4" style = "font-weight:normal; opacity:0.9;">{{matches.0}}</th>
+            <th class = " league display-4 " colspan = "4" style = "font-weight:normal; opacity:0.9;">{{matches.0}}</th>
           </tr>
         </thead>
         {% for matchh in matches.1 %}
           {% if matchh|length != 0 %}
           <thead>
             <tr>
-              <th class = "display-4" colspan = "3" style = "font-size:0.9rem; font-weight:normal;">Match</th>
-              <th class = "display-4" style = "font-size:0.9rem; font-weight:normal;">{{matchh.0}}</th>
+              <th class = "display-4 py-1" colspan = "3" style = "font-size:0.9rem; font-weight:normal;">Match</th>
+              <th class = "display-4 py-1" style = "font-size:0.9rem; font-weight:normal;">{{matchh.0}}</th>
             </tr>
           </thead>
           <tbody>
             {% for match in matchh.1 %}
             <tr>
               {% if match|length is 1 %}
-                <td class="text-left py-2" colspan= "4"><small>{{match.0}}</small></td>
+                <td class="text-left py-1" colspan= "4"><small>{{match.0}}</small></td>
               {% else %}
-                <td class = "text-right py-2">
+                <td class = "text-right py-1">
                   <span class="d-none d-sm-block">{{match.0}} <img src="{{match.2}}" alt="{{match.0}}"></span>
                   <span class="d-sm-none">{{match.1}} <img src="{{match.2}}" alt="{{match.0}}"></span>
                 </td>
-                <td class = "text-center py-2">{{match.3}}</td>
-                <td class = "text-left py-2">
+                <td class = "text-center py-1">{{match.3}}</td>
+                <td class = "text-left py-1">
                   <span class="d-none d-sm-block"><img src="{{match.4}}" alt="{{match.5}}"> {{match.5}}</span>
                   <span class="d-sm-none"><img src="{{match.4}}" alt="{{match.5}}"> {{match.6}}</span>
                 </td>
-                <td class = "py-2" {% if match.7 == 'LIVE' %} style = "color:red; font-weight:bold;" {% endif %}>{{match.7}}</td>
+                <td class = "py-1" {% if match.7 == 'LIVE' %} style = "color:red; font-weight:bold;" {% endif %}>{{match.7}}</td>
               {% endif %}
             </tr>
             {% endfor %}

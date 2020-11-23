@@ -52,7 +52,7 @@ def fixtures(request):
         todaysdate = fdate.split('-')
         fdate = ''.join(fdate.split('-'))
         tdate = datetime.now()
-        if todaysdate == [str(tdate.year), str(tdate.month), str(tdate.day)]:
+        if todaysdate == [str(tdate.year), str(tdate.month), str(tdate.day)] and league != 'All':
             link = 'https://www.espn.in/football/fixtures/_/league/'+leaguedict.get(league, '')
         else:
             link = 'https://www.espn.in/football/fixtures/_/date/'+fdate+'/league/'+leaguedict.get(league, '')
