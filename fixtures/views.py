@@ -32,7 +32,7 @@ def fixtures(request):
         'FIFA World Cup Qualifying - AFC':'fifa.worldq.afc',
         'FIFA World Cup Qualifying - OFC':'fifa.worldq.ofc',
         'FIFA Confederations Cup':'fifa.confederations',
-        'FIFA Club World Cup':'fif.cwc',
+        'FIFA Club World Cup':'fifa.cwc',
         'FIFA Under-20 World Cup':'fifa.world.u20',
         'UEFA European Championship':'uefa.euro',
         'Copa America':'conmebol.america',

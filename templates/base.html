@@ -101,10 +101,10 @@
               </a>
               <ul class="collapse list-unstyled mb-1 mx-1 text-lg-center" id="matches" style="position:relative; background-color:#343a40!important; border-radius:5px;">
                 <li>
-                  <a class="nav-link pr-3 pr-lg-2" href="{% url 'matches' %}">Football</a>
+                  <a class="nav-link pr-3 pr-lg-2 {% if current == 'football' %}active{% endif %}" href="{% url 'football' %}">Football</a>
                 </li>
                 <li>
-                  <a class="nav-link pr-3 pr-lg-2" href="#cricket">Cricket</a>
+                  <a class="nav-link pr-3 pr-lg-2 {% if current == 'cricket' %}active{% endif %}" href="{% url 'cricket' %}">Cricket</a>
                 </li>
               </ul>
             </li>

@@ -8,3 +8,6 @@ db.sqlite3-journal
 media
 /env
 /static
+/tmp
+/public
+/passenger_wsgi.py
