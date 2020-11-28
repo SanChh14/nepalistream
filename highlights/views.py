@@ -3,9 +3,14 @@ from bs4 import BeautifulSoup
 import requests
 from django.shortcuts import redirect
 from slugify import slugify
+from fixtures.models import site_views
 
 
 def highlights(request):
+    from fixtures.models import site_views
+    site = site_views.objects.get(pk='highlights')
+    site.page_views += 1
+    site.save()
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36'}
     try:
         num = request.GET['date']

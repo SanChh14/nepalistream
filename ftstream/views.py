@@ -3,8 +3,12 @@ from bs4 import BeautifulSoup
 import requests
 from django.shortcuts import redirect
 from slugify import slugify
+from fixtures.models import site_views
 
 def home(request):
+    site = site_views.objects.get(pk='home')
+    site.page_views += 1
+    site.save()
     headers = {'User-Agent':'Mozilla/5 (X11; U; Linux i686; en-US) Gecko/2010 Ubuntu/9.10 (karmic) Firefox/3.5'}
     link = 'https://buffersports.com/football-games'
     site = requests.get(link, headers=headers, verify = False).text
@@ -12,7 +16,10 @@ def home(request):
     leagues = football.find_all(class_='country-sales-content list-group-item')
     matchesdata = list()
     for league in leagues:
-        leagueimg = league.find(class_='row justify-content-center').img['src']
+        if league.find(class_='row justify-content-center').img != None:
+            leagueimg = league.find(class_='row justify-content-center').img['src']
+        else:
+            leagueimg = ''
         type = league.find(class_='row justify-content-center').find(class_='ml-3 mt-3 font-weight-bold').text
         timezone = league.find(class_='ml-5').text
         matches = league.find_all('div', class_='row mt-3')
@@ -30,6 +37,9 @@ def home(request):
     return render(request, 'home.html', {'matchesdata':matchesdata, 'home':'active'})
 
 def matches(request):
+    site = site_views.objects.get(pk='matches')
+    site.page_views += 1
+    site.save()
     try:
         game = request.GET['game']
         if game != 'football' and game != 'cricket':
@@ -47,7 +57,10 @@ def matches(request):
     matchesdata = list()
     for league in leagues:
         if game == 'football':
-            leagueimg = league.find(class_='row justify-content-center').img['src']
+            if league.find(class_='row justify-content-center').img != None:
+                leagueimg = league.find(class_='row justify-content-center').img['src']
+            else:
+                leagueimg = ''
             type = league.find(class_='row justify-content-center').find(class_='ml-3 mt-3 font-weight-bold').text
             timezone = league.find(class_='ml-5').text
             matches = league.find_all('div', class_='row mt-3')
@@ -79,6 +92,9 @@ def matches(request):
     return render(request, 'matches.html', {'matchesdata':matchesdata, 'matches':'active', 'current':game})
 
 def fmatch(request, slug):
+    site = site_views.objects.get(pk='football match')
+    site.page_views += 1
+    site.save()
     vs = slug
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36'}
     link = 'https://buffersports.com/football-games'
@@ -128,6 +144,9 @@ def fmatch(request, slug):
             return redirect('fixtures')
 
 def cmatch(request, slug):
+    site = site_views.objects.get(pk='cricket match')
+    site.page_views += 1
+    site.save()
     vs = slug
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36'}
     link = 'https://buffersports.com/cricket-games'
@@ -183,13 +202,25 @@ def cricket(request):
     return redirect('/matches/?game=cricket')
 
 def about(request):
+    site = site_views.objects.get(pk='about')
+    site.page_views += 1
+    site.save()
     return render(request, 'about.html', {'about':'active'})
 
 def contactus(request):
+    site = site_views.objects.get(pk='contact')
+    site.page_views += 1
+    site.save()
     return render(request, 'contactus.html', {'contact':'active'})
 
 def privacypolicy(request):
+    site = site_views.objects.get(pk='privacy policy')
+    site.page_views += 1
+    site.save()
     return render(request, 'privacypolicy.html', {'privacy':'active'})
 
 def termsandconditions(request):
+    site = site_views.objects.get(pk='terms and conditions')
+    site.page_views += 1
+    site.save()
     return render(request, 'termsandconditions.html', {'terms':'active'})

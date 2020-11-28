@@ -4,8 +4,12 @@ import requests
 from django.shortcuts import redirect
 from slugify import slugify
 from datetime import datetime
+from fixtures.models import site_views
 
 def fixtures(request):
+    site = site_views.objects.get(pk='fixtures')
+    site.page_views += 1
+    site.save()
     leaguedict = {
         'All':'all',
         'Spanish Primera División':'esp.1',
