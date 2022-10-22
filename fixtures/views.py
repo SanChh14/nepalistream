@@ -4,15 +4,11 @@ import requests
 from django.shortcuts import redirect
 from slugify import slugify
 from datetime import datetime
-from fixtures.models import site_views
 
 def fixtures(request):
-    site = site_views.objects.get(pk='fixtures')
-    site.page_views += 1
-    site.save()
     leaguedict = {
         'All':'all',
-        'Spanish Primera División':'esp.1',
+        'Spanish Primera Division':'esp.1',
         'French Ligue 1':'fra.1',
         'English Premier League':'eng.1',
         'UEFA Champions League':'uefa.champions',
@@ -48,7 +44,7 @@ def fixtures(request):
         league = ''
         fdate = ''
     headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'}
-    if fdate is '' and league is '':
+    if fdate == '' and league == '':
         todaysdate = datetime.now()
         todaysdate = [todaysdate.year, todaysdate.month, todaysdate.day]
         link = 'https://www.espn.in/football/fixtures/_/league/all'
@@ -68,7 +64,7 @@ def fixtures(request):
     fixtures = matches.contents[1:]
     allowedTitles = [
         'English Premier League',
-        'Spanish Primera División',
+        'Spanish Primera Division',
         'UEFA Champions League',
         'French Ligue 1',
         'Italian Serie A',
@@ -99,8 +95,8 @@ def fixtures(request):
     prev = 'div'
     matchesdata = list()
     for fixture in fixtures:
-        if fixture.name == 'h2':
-            matchesdata.append([fixture.text, [ [  ], [  ] ] ])
+        if fixture.name == 'span':
+            matchesdata.append([fixture.find('h2').text, [ [  ], [  ] ] ])
             prev = 'h2'
         elif fixture.name == 'div':
             if prev == 'h2':
@@ -125,7 +121,7 @@ def fixtures(request):
                     n=0
                     continue
                 td = match.find_all('td')
-                if len(td) is 1:
+                if len(td) == 1:
                     pen = td[0].small.text
                     matchdata.append([pen])
                     continue
